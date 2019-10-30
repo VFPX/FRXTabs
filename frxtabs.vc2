@@ -3017,9 +3017,9 @@ DEFINE CLASS tabreportvariables AS tabbase OF "frxtabs.vcx"
 	*< OBJECTDATA: ObjPath="Panelreportvars1" UniqueID="" Timestamp="" />
 
 	#INCLUDE "frxtabs.h"
-	Height = 248
+	Height = 247
 	Name = "tabreportvariables"
-	Width = 487
+	Width = 486
 
 	ADD OBJECT 'Panelreportvars1' AS panelreportvars WITH ;
 		Left = 6, ;
@@ -3068,6 +3068,16 @@ DEFINE CLASS tabreportvariables AS tabbase OF "frxtabs.vcx"
 		This.Caption       = UI_TAB_VARIABLES_LOC
 		This.Name          = 'pageVariables'
 		This.HelpContextID = UI_REPORT_PROPS_VARIABLES_HELP_ID
+		
+	ENDPROC
+
+	PROCEDURE Panelreportvars1.populatelist
+		* Automatically select the first variable in the list.
+		
+		dodefault()
+		if empty(This.varList.Value) and This.varCount > 0
+			This.varList.ListIndex = 1
+		endif empty(This.varList.Value) ...
 		
 	ENDPROC
 
